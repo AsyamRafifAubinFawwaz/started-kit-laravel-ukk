@@ -5,3 +5,4 @@ how to installl
 3.copy .env
 4.php artisan key:generate
 5.php artisan migrate
+6.composer run dev
