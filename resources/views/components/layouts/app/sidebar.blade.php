@@ -5,24 +5,38 @@
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-            <flux:sidebar.header>
-                <x-app-logo :sidebar="true" href="{{ route('dashboard') }}"  wire:navigate />
-                <flux:sidebar.collapse class="lg:hidden" />
-            </flux:sidebar.header>
+
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </flux:sidebar.item>
-                    <flux:sidebar.item icon="book-open-text" :href="route('task_categories.index')" :current="request()->routeIs('task_categories.index')" wire:navigate>
-                        {{ __('Kategori task') }}
-                    </flux:sidebar.item>
-                    <flux:sidebar.item icon="book-open-text" :href="route('tasks.index')" :current="request()->routeIs('tasks.index')" wire:navigate>
-                        {{ __('Task') }}
-                    </flux:sidebar.item>
+
+                    @if(auth()->user()->access_type == \App\Constants\UserConst::ADMIN)
+                        <flux:sidebar.item icon="book-open-text" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>
+                            {{ __('Dashboard') }}
+                        </flux:sidebar.item>
+                        <flux:sidebar.item icon="book-open-text" :href="route('admin.task_categories.index')" :current="request()->routeIs('admin.task_categories.*')" wire:navigate>
+                            {{ __('Kategori task') }}
+                        </flux:sidebar.item>
+
+                        <flux:sidebar.item icon="book-open-text" :href="route('admin.tasks.index')" :current="request()->routeIs('admin.tasks.*')" wire:navigate>
+                            {{ __('Task') }}
+                        </flux:sidebar.item>
+
+                        <flux:sidebar.item icon="users" :href="route('admin.classrooms.index')" :current="request()->routeIs('admin.classrooms.*')" wire:navigate>
+                            {{ __('Kelas') }}
+                        </flux:sidebar.item>
+                    @endif
+
+                    @if(auth()->user()->access_type == \App\Constants\UserConst::STUDENT)
+                        <flux:sidebar.item icon="book-open-text" :href="route('admin.tasks.index')" :current="request()->routeIs('admin.tasks.*')" wire:navigate>
+                            {{ __('Tugasku') }}
+                        </flux:sidebar.item>
+                    @endif
+
+
                 </flux:sidebar.group>
             </flux:sidebar.nav>
+
 
             <flux:spacer />
 

@@ -4,21 +4,18 @@ namespace App\Constants;
 
 class UserConst
 {
-    const ADMIN = 1;
+    const ADMIN = 'Admin';
 
-    const USER = 2;
+    const STUDENT = 'Siswa';
 
-    const GURU = 3;
 
-    const SISWA = 4;
 
     public static function getAccessTypes()
     {
         return [
-            self::ADMIN => 'Super Admin',
-            self::USER => 'Admin Sekolah',
-            self::GURU => 'Guru',
-            self::SISWA => 'Siswa',
+            self::ADMIN => 'Admin',
+            self::STUDENT => 'Siswa',
         ];
     }
 }
+
