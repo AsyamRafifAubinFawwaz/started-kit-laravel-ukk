@@ -50,7 +50,7 @@ class ClassroomController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Classroom $classroom)
+    public function detail(Classroom $classroom)
     {
         $classroom = Classroom::findOrFail($classroom->id);
         return view('admin.classrooms.show', compact('classroom'));
